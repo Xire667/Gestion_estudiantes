@@ -10,11 +10,11 @@ const Roles = sequelize.define('Roles', {
         primaryKey: true,
         autoIncrement: true
     },
-    nombre:{
+    Name:{
         type:DataTypes.STRING,
         allowNull: false
     },
-    descripcion:{
+    description:{
         type:DataTypes.STRING,
         allowNull: false
     }

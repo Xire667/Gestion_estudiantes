@@ -11,24 +11,24 @@ const Curso = sequelize.define('Curso', { // El modelo debe llamarse 'Curso'
         primaryKey: true,
         autoIncrement: true
     },
+    Name:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    description:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    credits:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     id_carrera: {
         type: DataTypes.INTEGER,
         references: {
             model: Carrera, // Nombre del modelo con el que se hace la referencia
             key: 'id_carrera' // Llave primaria del modelo Carrera
         }
-    },
-    nombre:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    descripcion:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    creditos:{
-        type: DataTypes.STRING,
-        allowNull: false
     }
 });
 
