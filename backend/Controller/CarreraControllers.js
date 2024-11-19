@@ -22,7 +22,7 @@ const getAllCarrerasController = async () =>{
 }
 
 // Update Carrera by ID
-const updateCarrerasByIdController = async(id_carrera, carreraData) =>{
+const updatedCarrerasByIdController = async(id_carrera, carreraData) =>{
     try {
         const updateCarrera = await Carrera.findByPk(id_carrera)
         if(!updateCarrera){
@@ -52,6 +52,6 @@ const deletedCarrerasByIdController = async(id_carrera) =>{
 module.exports={
     CreateCarreraController,
     getAllCarrerasController,
-    updateCarrerasByIdController,
+    updatedCarrerasByIdController,
     deletedCarrerasByIdController
 }

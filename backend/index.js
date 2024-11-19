@@ -1,6 +1,6 @@
 const server = require("./server")
 
-const db = require('')
+const db = require('./Models/index')
 
 db.sequelize.sync({alter: true})
     .then(()=>{    

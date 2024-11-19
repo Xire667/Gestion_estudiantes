@@ -1,0 +1,83 @@
+.contenedorGeneral {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.contenedorLogin {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.titulo {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333333;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.etiqueta {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #555555;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.boton, .botonSecundario {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.boton {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.boton:hover {
+    background-color: #0056b3;
+}
+
+.botonSecundario {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.botonSecundario:hover {
+    background-color: #5a6268;
+}

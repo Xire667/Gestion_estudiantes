@@ -4,7 +4,7 @@ const Roles = require('../Models/Roles')
 
 const CreateRolesController = async ({id_rol, Name, description}) =>{
     try {
-        const newRol = await Rol.create({id_rol, Name, description})
+        const newRol = await Roles.create({id_rol, Name, description})
         return newRol
     } catch (error) {
         throw new Error(error.message)
@@ -14,7 +14,7 @@ const CreateRolesController = async ({id_rol, Name, description}) =>{
 //Get all Roles
 const getAllRolesController = async () =>{
     try {
-        const roles = await Rol.findAll()
+        const roles = await Roles.findAll()
         return roles
     } catch (error) {
         throw new Error(error.message)
@@ -22,9 +22,9 @@ const getAllRolesController = async () =>{
 }
 
 // Update Roles by ID
-const updateRolesByIdController = async(id_rol, rolData) =>{
+const updatedRolesByIdController = async(id_rol, rolData) =>{
     try {
-        const updateRol = await Rol.findByPk(id_rol)
+        const updateRol = await Roles.findByPk(id_rol)
         if(!updateRol){
             return null
         }
@@ -38,7 +38,7 @@ const updateRolesByIdController = async(id_rol, rolData) =>{
 //Deleted Rol by ID
 const deletedRolesByIdController = async(id_rol) =>{
     try {
-        const rol = await Rol.findByPk(id_rol)
+        const rol = await Roles.findByPk(id_rol)
         if(!rol){
             return null
         }
@@ -52,6 +52,6 @@ const deletedRolesByIdController = async(id_rol) =>{
 module.exports={
     CreateRolesController,
     getAllRolesController,
-    updateRolesByIdController,
+    updatedRolesByIdController,
     deletedRolesByIdController
 }

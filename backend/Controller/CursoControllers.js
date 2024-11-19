@@ -2,7 +2,7 @@
 
 const Curso = require('../Models/Curso')
 
-const CreateCursosController = async ({id_curso, Name, description, credits}) =>{
+const CreateCursoController = async ({id_curso, Name, description, credits}) =>{
     try {
         const newCurso = await Curso.create({id_curso, Name, description, credits})
         return newCurso
@@ -22,7 +22,7 @@ const getAllCursosController = async () =>{
 }
 
 // Update Curso by ID
-const updateCursosByIdController = async(id_curso, cursoData) =>{
+const updatedCursosByIdController = async(id_curso, cursoData) =>{
     try {
         const updateCurso = await Curso.findByPk(id_curso)
         if(!updateCurso){
@@ -50,8 +50,8 @@ const deletedCursosByIdController = async(id_curso) =>{
 }
 
 module.exports={
-    CreateCursosController,
+    CreateCursoController,
     getAllCursosController,
-    updateCursosByIdController,
+    updatedCursosByIdController,
     deletedCursosByIdController
 }

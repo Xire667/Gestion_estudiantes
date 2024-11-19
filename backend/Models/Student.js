@@ -15,11 +15,11 @@ const Student = sequelize.define('Student', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    firtsNames: {
+    firtsName: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    lastNames: {
+    lastName: {
         type: DataTypes.STRING,
         allowNull: false
     },

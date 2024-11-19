@@ -4,6 +4,7 @@ const { Sequelize, DataTypes } = require("sequelize")
 
 const sequelize = require('../db')
 const Users= require('./Users')
+const Roles = require('./Roles')
 
 const Teacher = sequelize.define('Teacher', {
     id_teacher:{
@@ -15,11 +16,11 @@ const Teacher = sequelize.define('Teacher', {
         type:DataTypes.STRING,
         allowNull: false
     },
-    firtsNames:{
+    firtsName:{
         type:DataTypes.STRING,
         allowNull: false
     },
-    lastNames:{
+    lastName:{
         type:DataTypes.STRING,
         allowNull: false
     },
@@ -52,11 +53,11 @@ const Teacher = sequelize.define('Teacher', {
 // Relación: Un usuario puede tener muchos estudiantes
 Users.hasMany(Teacher, { foreignKey: 'id_user' });
 // Relación: Un estudiante pertenece a un solo usuario
-Student.belongsTo(Users, { foreignKey: 'id_user' });
+Users.belongsTo(Users, { foreignKey: 'id_user' });
 
 // Relación: Un rol puede tener muchos estudiantes
 Roles.hasMany(Teacher, { foreignKey: 'id_rol' });
 // Relación: Un estudiante pertenece a un solo rol
-Student.belongsTo(Roles, { foreignKey: 'id_rol' });
+Roles.belongsTo(Roles, { foreignKey: 'id_rol' });
 
 module.exports = Teacher;
