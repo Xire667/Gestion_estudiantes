@@ -4,6 +4,12 @@ import CarreraForm from './Components/CarreraForm/CarreraForm'
 import CarreraList from './Components/CarreraList/CarreraList'
 import Home from './Components/Home/Home'
 import LoginForm from './Components/Login/LoginForm'
+import RolesForm from './Components/RolesForm/RolesForm'
+import RolesList from './Components/RolesList/RolesList'
+import CursoForm from './Components/CursoForm/CursoForm'
+import CursosList from './Components/CursoList/CursoList'
+import RegisterForm from './Components/RegisterForm/RegisterForm'
+import RegisterList from './Components/RegisterList/RegisterList'
 
 function App() {
   return (
@@ -11,9 +17,15 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginForm />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/carrera" element={<CarreraForm />} />
           <Route path="/carrera_list" element={<CarreraList />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/curso" element={<CursoForm />} />
+          <Route path="/curso_list" element={<CursosList />} />
+          <Route path="/roles" element={<RolesForm />} />
+          <Route path="/roles_list" element={<RolesList />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/register_list" element={<RegisterList />} />
         </Routes>
       </BrowserRouter>
     </>

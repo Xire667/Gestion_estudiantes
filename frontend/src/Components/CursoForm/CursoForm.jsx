@@ -1,41 +1,43 @@
 import { useState } from "react";
-import styles from "./CarreraForm.module.css";
-import useCarreraStore from "../../Store/CarreraStore"
+import styles from "./CursoForm.module.css";
+import useCursoStore from "../../Store/CursoStore"
 
-const CarreraForm = () => {
-    const {addCarrera} = useCarreraStore
-    const [CarreraData, setCarreraData] = useState({
+const CursoForm = () => {
+    const {addCurso} = useCursoStore
+    const [CursoData, setCursoData] = useState({
         Name: "",
         description: "",
-        duration: ""
+        credits:""
     });
 
-    console.log(CarreraData)
+    console.log(CursoData)
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setCarreraData({
-            ...CarreraData,
+        setCursoData({
+            ...CursoData,
             [name]: value
         });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addCarrera(CarreraData)
-        setCarreraData({
+        addCurso(CursoData)
+        setCursoData({
             Name: "",
             description: "",
-            duration: ""
+            credits: ""
         });
-        alert("Carrera added Successfully!");
+        alert("Curso added Successfully!");
     };
 
     return (
         <div className={styles.formContainer}>
             <a href="/home">IR a HOME</a>
+            <h2></h2>
+            <a href="/curso_list"></a>
             <div className={styles.formContent}>
-                <h1 className={styles.title}>Carrera Form</h1>
+                <h1 className={styles.title}>Curso Form</h1>
                 <form onSubmit={handleSubmit}>
                     <label className={styles.label}>Nombre:</label>
                     <input
@@ -44,7 +46,7 @@ const CarreraForm = () => {
                         placeholder="Enter Name"
                         required
                         name="Name"
-                        value={CarreraData.Name}
+                        value={CursoData.Name}
                         onChange={handleInputChange}
                     />
                     <label className={styles.label}>Description:</label>
@@ -54,17 +56,17 @@ const CarreraForm = () => {
                         placeholder="Enter description"
                         required
                         name="description"
-                        value={CarreraData.description}
+                        value={CursoData.description}
                         onChange={handleInputChange}
                     />
-                    <label className={styles.label}>Duration:</label>
+                    <label className={styles.label}>Credits:</label>
                     <input
                         className={styles.input}
                         type="text"
                         placeholder="Enter duration"
                         required
                         name="duration"
-                        value={CarreraData.duration}
+                        value={CursoData.credits}
                         onChange={handleInputChange}
                     />
                     <button className={styles.button} type="submit">
@@ -76,4 +78,4 @@ const CarreraForm = () => {
     );
 };
 
-export default CarreraForm;
+export default CursoForm;

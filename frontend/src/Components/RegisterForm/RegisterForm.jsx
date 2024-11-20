@@ -1,70 +1,60 @@
 import { useState } from "react";
-import styles from "./CarreraForm.module.css";
-import useCarreraStore from "../../Store/CarreraStore"
+import styles from "./RegisterForm.module.css";
+import useUserStore from "../../Store/UserStore"
 
-const CarreraForm = () => {
-    const {addCarrera} = useCarreraStore
-    const [CarreraData, setCarreraData] = useState({
+const RegisterForm = () => {
+    const {addRegister} = useUserStore
+    const [RegisterData, setRegisterData] = useState({
         Name: "",
         description: "",
         duration: ""
     });
 
-    console.log(CarreraData)
+    console.log(RegisterData)
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setCarreraData({
-            ...CarreraData,
+        setRegisterData({
+            ...RegisterData,
             [name]: value
         });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addCarrera(CarreraData)
-        setCarreraData({
+        addRegister(RegisterData)
+        setRegisterData({
             Name: "",
             description: "",
             duration: ""
         });
-        alert("Carrera added Successfully!");
+        alert("Register added Successfully!");
     };
 
     return (
         <div className={styles.formContainer}>
             <a href="/home">IR a HOME</a>
             <div className={styles.formContent}>
-                <h1 className={styles.title}>Carrera Form</h1>
+                <h1 className={styles.title}>Register Form</h1>
                 <form onSubmit={handleSubmit}>
-                    <label className={styles.label}>Nombre:</label>
+                    <label className={styles.label}>User:</label>
                     <input
                         className={styles.input}
                         type="text"
                         placeholder="Enter Name"
                         required
-                        name="Name"
-                        value={CarreraData.Name}
+                        name="userName"
+                        value={RegisterData.userName}
                         onChange={handleInputChange}
                     />
-                    <label className={styles.label}>Description:</label>
+                    <label className={styles.label}>Password:</label>
                     <input
                         className={styles.input}
                         type="text"
                         placeholder="Enter description"
                         required
-                        name="description"
-                        value={CarreraData.description}
-                        onChange={handleInputChange}
-                    />
-                    <label className={styles.label}>Duration:</label>
-                    <input
-                        className={styles.input}
-                        type="text"
-                        placeholder="Enter duration"
-                        required
-                        name="duration"
-                        value={CarreraData.duration}
+                        name="password"
+                        value={RegisterData.password}
                         onChange={handleInputChange}
                     />
                     <button className={styles.button} type="submit">
@@ -76,4 +66,4 @@ const CarreraForm = () => {
     );
 };
 
-export default CarreraForm;
+export default RegisterForm;

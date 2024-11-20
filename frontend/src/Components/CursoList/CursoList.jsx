@@ -1,88 +1,89 @@
 import { useEffect, useState } from "react";
-import useCarreraStore from "../../Store/CarreraStore";
-import style from "./CarreraList.module.css";
+import useCursoStore from "../../Store/CursoStore";
+import style from "./CursoList.module.css";
 
-const CarreraList = () => {
-    const { fetchCarreras, carreras, deleteCarrera, updateCarrera } = useCarreraStore();
+const CursosList = () => {
+    const { fetchCursos, cursos, deleteCurso, updateCurso } = useCursoStore();
     const [searchTerm, setSearchTerm] = useState("");
-    const [filteredCarreras, setFilteredCarreras] = useState([]);
-    const [selectedCarrera, setSelectedCarrera] = useState(null);
+    const [filteredCursos, setFilteredCursos] = useState([]);
+    const [selectedCurso, setSelectedCurso] = useState(null);
 
     useEffect(() => {
-        fetchCarreras();
+        fetchCursos();
     }, []);
 
     useEffect(() => {
-        setFilteredCarreras(
-            carreras.filter((carrera) =>
-                `${carrera.Name}`.toLowerCase().includes(searchTerm.toLowerCase())
+        setFilteredCursos(
+            cursos.filter((curso) =>
+                `${curso.Name}`.toLowerCase().includes(searchTerm.toLowerCase())
             )
         );
-    }, [searchTerm, carreras]);
+    }, [searchTerm, cursos]);
 
-    const handleDelete = (id_carrera) => {
+    const handleDelete = (id_curso) => {
         if (window.confirm("Are you sure?")) {
-            deleteCarrera(id_carrera);
+            deleteCurso(id_curso);
         }
     };
 
-    const handleSelectCarrera = (carrera) => {
-        setSelectedCarrera(carrera);
+    const handleSelectCurso = (curso) => {
+        setSelectedCurso(curso);
     };
 
     const handleEditChange = (e) => {
         const { name, value } = e.target;
-        setSelectedCarrera({
-            ...selectedCarrera,
+        setSelectedCurso({
+            ...selectedCurso,
             [name]: value
         });
     };
 
     const handleEditSubmit = (e) => {
         e.preventDefault();
-        updateCarrera(selectedCarrera.id_carrera, selectedCarrera);
-        setSelectedCarrera(null);
+        updateCurso(selectedCurso.id_curso, selectedCurso);
+        setSelectedCurso(null);
     };
 
-    const handleCloseEdit = () =>{
-        setSelectedCarrera(null);
-    }
+    const handleCloseEdit = () => {
+        setSelectedCurso(null);
+    };
 
     return (
         <div className={style.contenedorGeneral}>
-            <a href="/carrera">Ir a Carrera Form</a>
-            <h1>Career List</h1>
+            <a href="/home">Ir a Home</a>
+            <h1></h1>
+            <a href="/curso">Ir a cursos</a>
+            <h1>Cursos List</h1>
             <input
                 type="text"
-                placeholder="Search career..."
+                placeholder="Search curso..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className={style.searchInput}
             />
             <div className={style.container}>
-                {filteredCarreras.map((user) => (
-                    <div key={user.id} className={style.listContainer}>
-                        <h3>{user.Name}</h3>
-                        <p>{user.description}</p>
-                        <p>{user.duration}</p>
+                {filteredCursos.map((curso) => (
+                    <div key={curso.id_curso} className={style.listContainer}>
+                        <h3>{curso.Name}</h3>
+                        <p>{curso.description}</p>
                         <div className={style.buttonGroup}>
-                            <button className={style.delete} onClick={() => handleDelete(user.id)}>❌</button>
-                            <button className={style.edit} onClick={() => handleSelectCarrera(user)}>✍️</button>
+                            <button className={style.delete} onClick={() => handleDelete(curso.id_curso)}>❌</button>
+                            <button className={style.edit} onClick={() => handleSelectCurso(curso)}>✍️</button>
                         </div>
                     </div>
                 ))}
             </div>
-            {selectedCarrera && (
+            {selectedCurso && (
                 <div className={style.editContainer}>
                     <button className={style.closeButton} onClick={handleCloseEdit}>❌</button>
-                    <h2>Edit Career</h2>
+                    <h2>Edit Curso</h2>
                     <form onSubmit={handleEditSubmit}>
                         <label>
                             Name:
                             <input
                                 type="text"
                                 name="Name"
-                                value={selectedCarrera.Name}
+                                value={selectedCurso.Name}
                                 onChange={handleEditChange}
                             />
                         </label>
@@ -91,16 +92,16 @@ const CarreraList = () => {
                             <input
                                 type="text"
                                 name="description"
-                                value={selectedCarrera.description}
+                                value={selectedCurso.description}
                                 onChange={handleEditChange}
                             />
                         </label>
                         <label>
-                            Duration:
+                            Credits:
                             <input
                                 type="text"
-                                name="duration"
-                                value={selectedCarrera.duration}
+                                name="credits"
+                                value={selectedCurso.credits}
                                 onChange={handleEditChange}
                             />
                         </label>
@@ -110,6 +111,6 @@ const CarreraList = () => {
             )}
         </div>
     );
-}
+};
 
-export default CarreraList;
+export default CursosList;

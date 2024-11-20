@@ -8,7 +8,7 @@ const Home = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Yendo a login:');
+        console.log('a login:');
         navigate('/');
     };
 
@@ -18,11 +18,11 @@ const Home = () => {
             <div className={style.contenedor_elementos}>
                 <ul className={style.menu_list}>
                     <li><a href="/carrera_list">Carreras</a></li>
-                    <li><a href="/carrera_list">Cursos</a></li>
-                    <li><a href="/carrera_list">Roles</a></li>
+                    <li><a href="/curso_list">Cursos</a></li>
+                    <li><a href="/roles_list">Roles</a></li>
                     <li><a href="/carrera_list">Estudiantes</a></li>
                     <li><a href="/carrera_list">Docentes</a></li>
-                    <li><a href="/carrera_list">Usuarios</a></li>
+                    <li><a href="/register_list">Usuarios</a></li>
                 </ul>
             </div>
             <div className={style.contenedor_image}>

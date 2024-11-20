@@ -8,10 +8,38 @@ const CreateUserController = async ({id_user, userName, password}) =>{
     const hashedPassword = await bcrypt.hash(password, 10)
 
     try {
-        const newUser = await User.create({id, userName, password:hashedPassword})
+        const newUser = await User.create({id_user, userName, password:hashedPassword})
         return newUser
     } catch (error) {
         throw new Error(error.message)
+    }
+}
+
+// Nuevo método de login
+const loginUserController = async (userName, password) => {
+    try {
+        // Buscar el usuario por nombre de usuario
+        const user = await User.findOne({ 
+            where: { userName } 
+        });
+        
+        // Si no se encuentra el usuario
+        if (!user) {
+            throw new Error('Usuario no encontrado');
+        }
+        
+        // Comparar la contraseña
+        const isMatch = await bcrypt.compare(password, user.password);
+        
+        // Si la contraseña no coincide
+        if (!isMatch) {
+            throw new Error('Contraseña incorrecta');
+        }
+        
+        // Si todo es correcto, devolver el usuario
+        return user;
+    } catch (error) {
+        throw new Error(error.message);
     }
 }
 
@@ -58,5 +86,6 @@ module.exports={
     CreateUserController,
     getAllUsersController,
     updatedUsersByIdController,
-    deletedUsersByIdController
+    deletedUsersByIdController,
+    loginUserController
 }
