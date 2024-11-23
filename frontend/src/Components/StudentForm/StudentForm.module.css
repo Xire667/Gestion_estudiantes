@@ -1,0 +1,79 @@
+/* CarreraForm.module.css */
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+    padding: 20px;
+    width: 600px;
+}
+
+.formContent {
+    background-color: #ffffff; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid #dcdcdc;
+}
+
+.title {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 25px;  
+    color: #333333;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: sans-serif;
+    font-size: 16px;
+    color: #555555;
+    font-weight: 500;
+}
+
+.input {
+    width: 85%; 
+    padding: 12px; 
+    margin-bottom: 20px; 
+    border: 1px solid #cccccc; 
+    border-radius: 6px; 
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, background-color 0.3s;
+    color: #000;
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+.input:focus {
+    border-color: #007bff;
+    background-color: #ffffff;
+    outline: none;
+}
+
+.button {
+    background: #007bff; 
+    color: #ffffff;
+    border: none; 
+    padding: 12px; 
+    border-radius: 6px; 
+    font-family: 'Poppins', sans-serif;
+    width: 100%; 
+    font-size: 16px; 
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.button:active {
+    transform: translateY(1px);
+}

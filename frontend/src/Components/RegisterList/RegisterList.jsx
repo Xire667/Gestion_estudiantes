@@ -52,7 +52,7 @@ const RegisterList = () => {
         <div className={style.contenedorGeneral}>
             <a href="/home">Ir a Home</a>
             <h1></h1>
-            <a href="/registers">registers</a>
+            <a href="/register">registers</a>
             <h1>Register List</h1>
             <input
                 type="text"

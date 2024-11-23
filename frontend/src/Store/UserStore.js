@@ -6,11 +6,11 @@ const useUserStore = create((set) => ({
     addUser: async (user) => {
         try {
             const response = await axios.post('http://localhost:3001/user', user);
-            set((state) => ({
-                users: [...state.users, response.data],
-            }));
+            // Devolver la respuesta completa
+            return response.data;
         } catch (error) {
             console.log('Error adding user', error.message);
+            throw error; // Propagar el error
         }
     },
     fetchUsers: async () => {

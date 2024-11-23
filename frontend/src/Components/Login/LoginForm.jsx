@@ -39,7 +39,7 @@ const LoginForm = () => {
         }
     };
 
-    const handleButton = async (e) => {
+    const handleNavigate = async (e) =>{
         e.preventDefault();
         navigate('/register');
     }
@@ -74,7 +74,7 @@ const LoginForm = () => {
                     </label>
                     <div className={style.botones}>
                         <button type="submit" className={style.boton}>Iniciar Sesión</button>
-                        <button type="button" className={style.botonSecundario}>Registrarse</button>
+                        <button type="button" className={style.botonSecundario} onClick={handleNavigate} >Registrarse</button>
                     </div>
                 </form>
             </div>

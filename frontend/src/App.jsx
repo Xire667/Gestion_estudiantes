@@ -10,6 +10,7 @@ import CursoForm from './Components/CursoForm/CursoForm'
 import CursosList from './Components/CursoList/CursoList'
 import RegisterForm from './Components/RegisterForm/RegisterForm'
 import RegisterList from './Components/RegisterList/RegisterList'
+import StudentForm from './Components/StudentForm/StudentForm'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/roles_list" element={<RolesList />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/register_list" element={<RegisterList />} />
+          <Route path="/student" element={<StudentForm />} />
         </Routes>
       </BrowserRouter>
     </>

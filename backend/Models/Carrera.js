@@ -1,8 +1,8 @@
-//Students.js
+//Carrera.js
 
 const { Sequelize, DataTypes } = require("sequelize")
 
-const sequelize = require('../db')
+const sequelize = require('../db');
 
 const Carrera = sequelize.define('Carrera', {
     id_carrera:{
@@ -21,7 +21,7 @@ const Carrera = sequelize.define('Carrera', {
     duration:{
         type:DataTypes.STRING,
         allowNull: false
-    }
+    },
 })
 
 module.exports = Carrera;

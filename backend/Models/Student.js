@@ -1,9 +1,8 @@
-// Students.js
-
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require('../db');
 const Users = require('./Users');
 const Roles = require('./Roles');
+const Carrera = require('./Carrera');
 
 const Student = sequelize.define('Student', {
     id_student: {
@@ -15,7 +14,7 @@ const Student = sequelize.define('Student', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    firtsName: {
+    firstName: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -33,19 +32,27 @@ const Student = sequelize.define('Student', {
     },
     id_user: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
             model: Users, // Nombre del modelo con el que se hace la referencia
             key: 'id_user' // Llave primaria del modelo Users
-        },
-        allowNull: false
+        }
     },
     id_rol: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
             model: Roles,
             key: 'id_rol'
-        },
-        allowNull: false
+        }
+    },
+    id_carrera: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Carrera, // Nombre del modelo con el que se hace la referencia
+            key: 'id_carrera' // Llave primaria del modelo Carrera
+        }
     }
 });
 
@@ -58,5 +65,10 @@ Student.belongsTo(Users, { foreignKey: 'id_user' });
 Roles.hasMany(Student, { foreignKey: 'id_rol' });
 // Relación: Un estudiante pertenece a un solo rol
 Student.belongsTo(Roles, { foreignKey: 'id_rol' });
+
+// Relación: Una carrera puede tener muchos estudiantes
+Carrera.hasMany(Student, { foreignKey: 'id_carrera' });
+// Relación: Un estudiante pertenece a una carrera
+Student.belongsTo(Carrera, { foreignKey: 'id_carrera' });
 
 module.exports = Student;

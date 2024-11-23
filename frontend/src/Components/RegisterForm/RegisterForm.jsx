@@ -34,6 +34,7 @@ const RegisterForm = () => {
     return (
         <div className={styles.formContainer}>
             <a href="/home">IR a HOME</a>
+            <a href="/register_list">Ir a Users List</a>
             <div className={styles.formContent}>
                 <h1 className={styles.title}>Register Form</h1>
                 <form onSubmit={handleSubmit}>
