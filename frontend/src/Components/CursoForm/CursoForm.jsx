@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./CursoForm.module.css";
-import useCursoStore from "../../Store/CursoStore"
+import useCursoStore from "../../Store/CursoStore";
+import useCarreraStore from "../../Store/CarreraStore"; // Asegúrate de tener este store para obtener las carreras
 
 const CursoForm = () => {
-    const {addCurso} = useCursoStore
+    const { addCursos } = useCursoStore();
+    const { fetchCarreras, carreras } = useCarreraStore();
+
     const [CursoData, setCursoData] = useState({
         Name: "",
         description: "",
-        credits:""
+        credits: "",
+        id_carrera: "" // Añadimos el campo para el ID de la carrera
     });
 
-    console.log(CursoData)
+    useEffect(() => {
+        fetchCarreras();
+    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -22,11 +28,12 @@ const CursoForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addCurso(CursoData)
+        addCursos(CursoData);
         setCursoData({
             Name: "",
             description: "",
-            credits: ""
+            credits: "",
+            id_carrera: "" // Reseteamos el campo
         });
         alert("Curso added Successfully!");
     };
@@ -63,12 +70,27 @@ const CursoForm = () => {
                     <input
                         className={styles.input}
                         type="text"
-                        placeholder="Enter duration"
+                        placeholder="Enter credits"
                         required
-                        name="duration"
+                        name="credits"
                         value={CursoData.credits}
                         onChange={handleInputChange}
                     />
+                    <label className={styles.label}>Carrera:</label>
+                    <select
+                        className={styles.select}
+                        required
+                        name="id_carrera"
+                        value={CursoData.id_carrera}
+                        onChange={handleInputChange}
+                    >
+                        <option value="" disabled>Select a Carrera</option>
+                        {carreras.map((carrera) => (
+                            <option key={carrera.id_carrera} value={carrera.id_carrera}>
+                                {carrera.Name}
+                            </option>
+                        ))}
+                    </select>
                     <button className={styles.button} type="submit">
                         Save
                     </button>

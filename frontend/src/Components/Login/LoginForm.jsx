@@ -1,15 +1,15 @@
 import style from './LoginForm.module.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Asegúrate de instalar axios: npm install axios
+import axios from 'axios';
 
 const LoginForm = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        userName: '', // Cambié 'user' a 'userName' para que coincida con tu backend
+        userName: '',
         password: ''
     });
-    const [error, setError] = useState(''); // Estado para manejar errores de login
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,7 +21,7 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(''); // Limpiar errores anteriores
+        setError('');
         
         try {
             // Hacer la solicitud de login

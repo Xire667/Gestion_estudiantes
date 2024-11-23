@@ -1,52 +1,60 @@
-/* CarreraForm.module.css */
+/* Carrera.module.css */
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #f0f2f5;
+}
+
 .formContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f2f5;
-    padding: 20px;
-    width: 450px;
+    background-color: #f8f9fa;
+    padding: 40px;
+    width: 45%;
 }
 
 .formContent {
-    background-color: #ffffff; 
-    border-radius: 12px; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
-    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
     width: 100%;
-    max-width: 450px;
-    border: 1px solid #dcdcdc;
+    max-width: 500px;
+    border: 1px solid #ddd;
 }
 
 .title {
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    margin-bottom: 25px;  
-    color: #333333;
-    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 26px;
     font-weight: 600;
 }
 
 .label {
     display: block;
-    margin-bottom: 8px;
-    font-family: sans-serif;
-    font-size: 16px;
-    color: #555555;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #555;
     font-weight: 500;
 }
 
 .input {
-    width: 85%; 
-    padding: 12px; 
-    margin-bottom: 20px; 
-    border: 1px solid #cccccc; 
-    border-radius: 6px; 
-    background-color: #f9f9f9;
-    transition: border-color 0.3s, background-color 0.3s;
-    color: #000;
-    font-family: sans-serif;
-    font-size: 18px;
+    width: 90%;
+    padding: 14px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
 }
 
 .input:focus {
@@ -56,17 +64,17 @@
 }
 
 .button {
-    background: #007bff; 
-    color: #ffffff;
-    border: none; 
-    padding: 12px; 
-    border-radius: 6px; 
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
     font-family: 'Poppins', sans-serif;
-    width: 100%; 
-    font-size: 16px; 
+    font-size: 16px;
     font-weight: 600;
+    width: 100%;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .button:hover {
@@ -76,4 +84,100 @@
 
 .button:active {
     transform: translateY(1px);
+}
+
+.listContainer {
+    width: 45%;
+    margin: top auto;
+}
+
+.searchInput {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.carreraList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.listItem {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.listItem h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.listItem p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+}
+
+.delete,
+.edit {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s ease;
+}
+
+.delete:hover,
+.edit:hover {
+    transform: translateY(-2px);
+}
+
+.delete:hover{
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    transition: transform 0.9s ease;
+}
+.edit:hover{
+    background-color: green;
+    padding: 5px;
+    border-radius: 5px;
+    transition: transform 0.9s ease;
+}
+
+
+.editContainer {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    z-index: 10;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    float: right;
 }
