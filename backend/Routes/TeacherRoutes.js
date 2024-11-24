@@ -11,9 +11,9 @@ const TeacherRouter = Router()
 
 //Crear un nuevo Teachers (post = agregar informacion)
 TeacherRouter.post('/',async(req, res)=>{
-    const {id_teacher, dni, firstName, lastName, email, phone} = req.body
+    const {dni, firstName, lastName, email, phone, id_user, id_rol, id_carrera} = req.body
     try{
-        const newTeacher = await CreateTeacherController({id_teacher, dni, firstName, lastName, email, phone})
+        const newTeacher = await CreateTeacherController({dni, firstName, lastName, email, phone, id_user, id_rol, id_carrera})
         res.status(201).json(newTeacher)
     }catch (error){
         res.status(400).json({error: error.message})

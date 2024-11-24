@@ -2,9 +2,18 @@
 
 const Teacher = require('../Models/Teacher')
 
-const CreateTeacherController = async ({id_teacher, dni, firstName, lastName, email, phone}) =>{
+const CreateTeacherController = async ({dni, firstName, lastName, email, phone, id_user, id_rol, id_carrera}) =>{
     try {
-        const newTeacher = await Teacher.create({id_teacher, dni, firstName, lastName, email, phone})
+        const newTeacher = await Teacher.create({
+            dni, 
+            firstName, 
+            lastName, 
+            email, 
+            phone,
+            id_user,
+            id_rol,
+            id_carrera
+        })
         return newTeacher
     } catch (error) {
         throw new Error(error.message)

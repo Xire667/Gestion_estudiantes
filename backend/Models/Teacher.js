@@ -56,15 +56,19 @@ const Teacher = sequelize.define('Teacher', {
     }
 });
 
-// Establecer la relación uno a uno entre Teacher y Users
+// Relación: Un usuario puede tener muchos estudiantes
+Users.hasMany(Teacher, { foreignKey: 'id_user' });
+// Relación: Un estudiante pertenece a un solo usuario
 Teacher.belongsTo(Users, { foreignKey: 'id_user' });
-Users.hasOne(Teacher, { foreignKey: 'id_user' });
 
-// Establecer la relación uno a muchos entre Roles y Teacher
-Teacher.belongsTo(Roles, { foreignKey: 'id_rol' });
+// Relación: Un rol puede tener muchos estudiantes
 Roles.hasMany(Teacher, { foreignKey: 'id_rol' });
+// Relación: Un estudiante pertenece a un solo rol
+Teacher.belongsTo(Roles, { foreignKey: 'id_rol' });
 
-// Relación: Un profesor pertenece a una carrera
+// Relación: Una carrera puede tener muchos estudiantes
+Carrera.hasMany(Teacher, { foreignKey: 'id_carrera' });
+// Relación: Un estudiante pertenece a una carrera
 Teacher.belongsTo(Carrera, { foreignKey: 'id_carrera' });
 
 module.exports = Teacher;
