@@ -2,19 +2,31 @@
 
 const Notas = require('../Models/Notas')
 
-const CreateNotaController = async ({id_student, id_curso, nota_1, nota_2, nota_3, promedio}) => {
+const CreateNotaController = async ({ id_student, id_curso, nota_1, nota_2, nota_3, promedio }) => {
     try {
-        // Crear el nuevo estudiante con todos los campos necesarios
+        // Verificar que todos los campos estén presentes
+        if (!id_student || !id_curso || !nota_1 || !nota_2 || !nota_3 || !promedio) {
+            throw new Error("All fields are required");
+        }
+
+        // Verificar que las notas sean números válidos
+        if (isNaN(nota_1) || isNaN(nota_2) || isNaN(nota_3) || isNaN(promedio)) {
+            throw new Error("All nota values must be valid numbers");
+        }
+
+        // Crear el nuevo registro de nota
         const newNota = await Notas.create({
             id_student,
-            id_curso, // ID del curso relacionado
-            nota_1,
-            nota_2,
-            nota_3,
-            promedio
+            id_curso,
+            nota_1: parseFloat(nota_1),
+            nota_2: parseFloat(nota_2),
+            nota_3: parseFloat(nota_3),
+            promedio: parseFloat(promedio)
         });
+
         return newNota;
     } catch (error) {
+        console.error("Error in CreateNotaController:", error.message);
         throw new Error(error.message);
     }
 }

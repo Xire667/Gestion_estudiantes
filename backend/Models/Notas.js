@@ -41,10 +41,21 @@ const Notas = sequelize.define('Notas', {
     }
 });
 
-// Relación: Un estudiante tiene muchas notas
-Notas.belongsTo(Student, { foreignKey: 'id_student' });
+// Relaciones bidireccionales completas
+Notas.belongsTo(Student, { 
+    foreignKey: 'id_student'
+});
 
-// Relación: Un curso tiene muchas notas
-Notas.belongsTo(Curso, { foreignKey: 'id_curso' });
+Student.hasMany(Notas, {
+    foreignKey: 'id_student'
+});
+
+Notas.belongsTo(Curso, { 
+    foreignKey: 'id_curso'
+});
+
+Curso.hasMany(Notas, {
+    foreignKey: 'id_curso'
+});
 
 module.exports = Notas;

@@ -9,11 +9,15 @@ const {CreateNotaController,
 
 const NotaRouter = Router()
 
-//Crear una nueva Nota (post = agregar informacion)
+// Crear una nueva Nota (post = agregar informacion)
 NotaRouter.post('/', async (req, res) => {
-    const { id_student ,id_curso, nota_1, nota_2, nota_3, promedio} = req.body; // Incluir los campos requeridos
+    const { id_student, id_curso, nota_1, nota_2, nota_3, promedio } = req.body;
+    if (!id_student || !id_curso || nota_1 === undefined || nota_2 === undefined || nota_3 === undefined || promedio === undefined) {
+        return res.status(400).json({ error: 'Faltan datos obligatorios' });
+    }
+    
     try {
-        const newNota = await CreateNotaController({ id_student ,id_curso, nota_1, nota_2, nota_3, promedio });
+        const newNota = await CreateNotaController({ id_student, id_curso, nota_1, nota_2, nota_3, promedio });
         res.status(201).json(newNota);
     } catch (error) {
         res.status(400).json({ error: error.message });

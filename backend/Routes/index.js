@@ -16,6 +16,6 @@ router.use('/rol', RolRouter)
 router.use('/student', StudentRouter)
 router.use('/user', UserRouter)
 router.use('/matricula', MatriculaRouter)
-router.use('/nota', NotaRouter)
+router.use('/notas', NotaRouter)
 
 module.exports = router

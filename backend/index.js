@@ -2,6 +2,7 @@ const server = require("./server")
 
 const db = require('./Models/index')
 
+
 db.sequelize.sync({alter: true})
     .then(()=>{    
         server.listen(3001, ()=>{

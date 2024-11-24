@@ -1,0 +1,156 @@
+/* StudentForm.module.css */
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 40px;
+    min-height: 100vh;
+}
+
+.formContent {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid #ddd;
+}
+
+.title {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.label {
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.input {
+    width: 90%;
+    padding: 14px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.input:focus {
+    border-color: #007bff;
+    background-color: #ffffff;
+    outline: none;
+}
+
+.select {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.select:focus {
+    border-color: #007bff;
+    background-color: #ffffff;
+    outline: none;
+}
+
+.button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+a {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.promedioContainer {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.promedio {
+    margin-top: 8px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.promedioValue {
+    font-weight: bold;
+    font-size: 1.4em;
+    color: #2c3e50;
+}
+
+.promedioStatus {
+    font-size: 0.9em;
+}
+
+.promedioPlaceholder {
+    color: #6c757d;
+    font-style: italic;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Estilos para inputs numéricos */
+input[type="number"] {
+    padding-right: 5px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    opacity: 1;
+}

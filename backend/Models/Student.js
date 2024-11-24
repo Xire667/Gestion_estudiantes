@@ -3,7 +3,6 @@ const sequelize = require('../db');
 const Users = require('./Users');
 const Roles = require('./Roles');
 const Carrera = require('./Carrera');
-const Notas = require('./Notas')
 
 const Student = sequelize.define('Student', {
     id_student: {
@@ -71,8 +70,5 @@ Student.belongsTo(Roles, { foreignKey: 'id_rol' });
 Carrera.hasMany(Student, { foreignKey: 'id_carrera' });
 // Relación: Un estudiante pertenece a una carrera
 Student.belongsTo(Carrera, { foreignKey: 'id_carrera' });
-
-// Relación: Un estudiante tiene muchas notas
-Student.hasMany(Notas, { foreignKey: 'id_student' });
 
 module.exports = Student;
