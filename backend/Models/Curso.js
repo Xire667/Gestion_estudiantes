@@ -4,6 +4,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 const sequelize = require('../db');
 const Carrera = require('./Carrera'); // Importar el modelo Carrera
+const Notas = require('./Notas')
 
 const Curso = sequelize.define('Curso', { // El modelo debe llamarse 'Curso'
     id_curso: {
@@ -35,5 +36,8 @@ const Curso = sequelize.define('Curso', { // El modelo debe llamarse 'Curso'
 // Definir la relación entre Curso y Carrera
 Carrera.hasMany(Curso, { foreignKey: 'id_carrera' });
 Curso.belongsTo(Carrera, { foreignKey: 'id_carrera' });
+
+// Relación: Un curso tiene muchas notas
+Curso.hasMany(Notas, { foreignKey: 'id_curso' });
 
 module.exports = Curso;
