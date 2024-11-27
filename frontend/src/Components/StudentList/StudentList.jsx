@@ -4,8 +4,12 @@ import useCarreraStore from "../../Store/CarreraStore";
 import useRoleStore from "../../Store/RolesStore";
 import useCicloStore from "../../Store/CicloStore";
 import style from "./StudentList.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 const StudentList = () => {
+    const navigate = useNavigate();
+
     const { fetchStudents, students, deleteStudent, updateStudent } = useStudentStore();
     const { fetchCarreras } = useCarreraStore();
     const { fetchRoles } = useRoleStore();
@@ -99,7 +103,9 @@ const StudentList = () => {
 
     return (
         <div className={style.contenedorGeneral}>
-            <a href="/student">Ir a Student Form</a>
+            <button className={style.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
             <h1>Student List</h1>
             <input
                 type="text"

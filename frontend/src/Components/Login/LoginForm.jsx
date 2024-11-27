@@ -20,6 +20,9 @@ const LoginForm = () => {
             [name]: value
         }));
     };
+    const handleImageClick = () => {
+        navigate("/"); // Cambia a la ruta deseada
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,7 +46,7 @@ const LoginForm = () => {
         <div className={style.contenedorGeneral}>
             <div className={style.contenedorLogin}>
                 <div className={style.logoContainer}>
-                    <img src={logo} alt="Logo" className={style.logo} />
+                    <img src={logo} alt="Logo" className={style.logo} onClick={handleImageClick}/>
                 </div>
                 <h2 className={style.titulo}>Iniciar Sesión</h2>
                 

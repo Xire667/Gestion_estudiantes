@@ -4,8 +4,12 @@ import useCarreraStore from "../../Store/CarreraStore";
 import useStudentStore from "../../Store/StudentStore";
 import useCursoStore from "../../Store/CursoStore";
 import style from "./NotasList.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 const NotasList = () => {
+    const navigate = useNavigate();
+
     const { fetchNotas, notas, deleteNota, updateNota } = useNotaStore();
     const { fetchCarreras } = useCarreraStore();
     const { fetchStudents } = useStudentStore();
@@ -97,7 +101,9 @@ const NotasList = () => {
 
     return (
         <div className={style.contenedorGeneral}>
-            <a href="/home">Ir a Home</a>
+            <button className={style.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
             <h1>Lista de Notas</h1>
 
             <div className={style.filterContainer}>

@@ -3,6 +3,7 @@ import style from "./Menu_Teacher.module.css";
 import suiza from "../img/suiza.png"; // Importar la imagen
 
 const Menu_Teacher = () => {
+
     const navigate = useNavigate();
 
     const handleNavigation = (path) => {
@@ -13,7 +14,7 @@ const Menu_Teacher = () => {
         <div className={style.container}>
             <div className={style.content}>
                 <img src={suiza} alt="Admin" className={style.adminImage} /> {/* Imagen del administrador */}
-                <h2 className={style.title}>Menú Administrador</h2>
+                <h2 className={style.title}>Menú Profesor</h2>
                 <div className={style.buttonContainer}>
                     <button className={style.menuButton} onClick={() => handleNavigation('/curso')}>Curso Form</button>
                     <button className={style.menuButton} onClick={() => handleNavigation('/curso_list')}>Curso List</button>
@@ -22,6 +23,9 @@ const Menu_Teacher = () => {
                     <button className={style.menuButton} onClick={() => handleNavigation('/notas_list')}>Notas List</button>
                     <button className={style.menuButton} onClick={() => handleNavigation('/teacher')}>Teacher Form</button>
                     <button className={style.menuButton} onClick={() => handleNavigation('/teacher_list')}>Teacher List</button>
+                    <button className={style.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
                 </div>
             </div>
         </div>

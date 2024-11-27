@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import useRolesStore from '../../Store/RolesStore';
 import style from './RolesForm.module.css'; // Asegúrate de que el archivo CSS cubra ambos componentes
+import { useNavigate } from "react-router-dom";
+
 
 const Roles = () => {
+    const navigate = useNavigate();
+
     const { addRole, fetchRoles, roles, deleteRole, updateRole } = useRolesStore();
     const [RolData, setRolData] = useState({
         Name: '',
@@ -75,7 +79,9 @@ const Roles = () => {
         <div className={style.container}>
             {/* Formulario de Rol */}
             <div className={style.formContainer}>
-                <a href="/roles_list">Ir a roles list</a>
+            <button className={style.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
                 <div className={style.formContent}>
                     <h1 className={style.title}>Formulario de Rol</h1>
                     <form onSubmit={handleSubmit}>

@@ -26,6 +26,10 @@
     max-width: 150px;
     height: auto;
 }
+.logo:hover{
+    transform: scale(1.05);
+
+}
 
 .titulo {
     text-align: center;

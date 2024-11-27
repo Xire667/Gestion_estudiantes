@@ -4,8 +4,12 @@ import useCarreraStore from "../../Store/CarreraStore";
 import useUserStore from "../../Store/UserStore";
 import useRoleStore from "../../Store/RolesStore";
 import style from "./TeacherForm.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 const TeacherForm = () => {
+    const navigate = useNavigate();
+
     const { addTeacher } = useTeachersStore();
     const { fetchCarreras } = useCarreraStore();
     const { addUser } = useUserStore();
@@ -98,7 +102,9 @@ const TeacherForm = () => {
 
     return (
         <div className={style.formContainer}>
-            <a href="/teacher_list">Go to Teacher List</a>
+            <button className={style.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
             <div className={style.formContent}>
                 <h1 className={style.title}>Teacher Form</h1>
                 <form onSubmit={handleSubmit}>

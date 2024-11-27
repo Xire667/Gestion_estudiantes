@@ -4,8 +4,12 @@ import useMatriculaStore from "../../Store/MatriculaStore";
 import useCarreraStore from "../../Store/CarreraStore";
 import useStudentStore from "../../Store/StudentStore";
 import useCicloStore from "../../Store/CicloStore";
+import { useNavigate } from "react-router-dom";
+
 
 const MatriculaForm = () => {
+    const navigate = useNavigate();
+
     const { addMatricula } = useMatriculaStore();
     const { fetchCarreras } = useCarreraStore();
     const { fetchStudents } = useStudentStore();
@@ -90,7 +94,9 @@ const MatriculaForm = () => {
 
     return (
         <div className={styles.formContainer}>
-            <a href="/home">IR a HOME</a>
+            <button className={styles.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
             <div className={styles.formContent}>
                 <h1 className={styles.title}>Formulario de Matrícula</h1>
                 <form onSubmit={handleSubmit}>

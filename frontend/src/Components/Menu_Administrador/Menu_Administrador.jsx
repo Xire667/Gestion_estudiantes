@@ -21,8 +21,6 @@ const Menu_Administrador = () => {
                     <button className={style.menuButton} onClick={() => handleNavigation('/curso_list')}>Curso List</button>
                     <button className={style.menuButton} onClick={() => handleNavigation('/roles')}>Roles Form</button>
                     <button className={style.menuButton} onClick={() => handleNavigation('/roles_list')}>Roles List</button>
-                    <button className={style.menuButton} onClick={() => handleNavigation('/register')}>Register Form</button>
-                    <button className={style.menuButton} onClick={() => handleNavigation('/register_list')}>Register List</button>
                     <button className={style.menuButton} onClick={() => handleNavigation('/student')}>Student Form</button>
                     <button className={style.menuButton} onClick={() => handleNavigation('/student_list')}>Student List</button>
                     <button className={style.menuButton} onClick={() => handleNavigation('/matricula')}>Matricula Form</button>
@@ -31,6 +29,9 @@ const Menu_Administrador = () => {
                     <button className={style.menuButton} onClick={() => handleNavigation('/notas_list')}>Notas List</button>
                     <button className={style.menuButton} onClick={() => handleNavigation('/teacher')}>Teacher Form</button>
                     <button className={style.menuButton} onClick={() => handleNavigation('/teacher_list')}>Teacher List</button>
+                    <button className={style.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
                 </div>
             </div>
         </div>

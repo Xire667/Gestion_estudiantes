@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import useRolesStore from "../../Store/RolesStore";
 import style from "./RolesList.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 const RolesList = () => {
+    const navigate = useNavigate();
+
     const { fetchRoles, roles, deleteRole, updateRole } = useRolesStore();
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredRoles, setFilteredRoles] = useState([]);
@@ -49,10 +53,9 @@ const RolesList = () => {
     };
 
     return (
-        <div className={style.contenedorGeneral}>
-            <a href="/home">Ir a Home</a>
-            <h1></h1>
-            <a href="/roles">roles</a>
+        <div className={style.contenedorGeneral}><button className={style.backButton} onClick={() => navigate(-1)}>
+        Volver
+    </button>
             <h1>Roles List</h1>
             <input
                 type="text"

@@ -3,8 +3,12 @@ import useTeachersStore from "../../Store/TeachersStore";  // Suponiendo que ten
 import useCarreraStore from "../../Store/CarreraStore";   // Store para carreras
 import useRoleStore from "../../Store/RolesStore";        // Store para roles
 import style from "./TeachersList.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 const TeachersList = () => {
+    const navigate = useNavigate();
+
     const { fetchTeachers, teachers, deleteTeacher, updateTeacher } = useTeachersStore();
     const { fetchCarreras, carreras } = useCarreraStore(); // Obtener carreras
     const { fetchRoles, roles } = useRoleStore();         // Obtener roles
@@ -67,9 +71,9 @@ const TeachersList = () => {
 
     return (
         <div className={style.contenedorGeneral}>
-            <a href="/home">Ir a Home</a>
-            <h1></h1>
-            <a href="/teacher">Teachers</a>
+            <button className={style.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
             <h1>Teachers List</h1>
             <input
                 type="text"

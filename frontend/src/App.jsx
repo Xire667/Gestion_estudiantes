@@ -8,8 +8,6 @@ import RolesForm from './Components/RolesForm/RolesForm'
 import RolesList from './Components/RolesList/RolesList'
 import CursoForm from './Components/CursoForm/CursoForm'
 import CursosList from './Components/CursoList/CursoList'
-import RegisterForm from './Components/RegisterForm/RegisterForm'
-import RegisterList from './Components/RegisterList/RegisterList'
 import StudentForm from './Components/StudentForm/StudentForm'
 import StudentList from './Components/StudentList/StudentList'
 import MatriculaForm from './Components/MatriculaForm/MatricualForm'
@@ -46,8 +44,6 @@ function App() {
           <Route path="/curso_list" element={<CursosList />} />
           <Route path="/roles" element={<RolesForm />} />
           <Route path="/roles_list" element={<RolesList />} />
-          <Route path="/register" element={<RegisterForm />} />
-          <Route path="/register_list" element={<RegisterList />} />
           <Route path="/student" element={<StudentForm />} />
           <Route path="/student_list" element={<StudentList />} />
           <Route path="/matricula" element={<MatriculaForm />} />

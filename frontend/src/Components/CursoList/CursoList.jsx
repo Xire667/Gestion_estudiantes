@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import useCursoStore from "../../Store/CursoStore";
 import style from "./CursoList.module.css";
+import { useNavigate } from "react-router-dom";
 
 const CursosList = () => {
+    const navigate = useNavigate();
     const { fetchCursos, cursos, deleteCurso, updateCurso } = useCursoStore();
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredCursos, setFilteredCursos] = useState([]);
@@ -59,7 +61,9 @@ const CursosList = () => {
 
     return (
         <div className={style.contenedorGeneral}>
-            <a href="/home">Ir a Home</a>
+            <button className={style.backButton} onClick={() => navigate(-1)}>
+                        Volver
+            </button>
             <h1>Cursos List</h1>
 
             {/* Filtro por ciclo */}

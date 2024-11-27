@@ -5,8 +5,11 @@ import useCarreraStore from "../../Store/CarreraStore";
 import useUserStore from "../../Store/UserStore";
 import useRoleStore from "../../Store/RolesStore"; // Asegúrate de tener un store para los roles
 import useCicloStore from "../../Store/CicloStore";
+import { useNavigate } from "react-router-dom";
+
 
 const StudentForm = () => {
+    const navigate = useNavigate();
     const { addStudent } = useStudentStore();
     const { fetchCarreras } = useCarreraStore();
     const { addUser } = useUserStore();
@@ -113,8 +116,9 @@ const StudentForm = () => {
     };
 
     return (
-        <div className={styles.formContainer}>
-            <a href="/home">IR a HOME</a>
+        <div className={styles.formContainer}><button className={styles.backButton} onClick={() => navigate(-1)}>
+        Volver
+    </button>
             <div className={styles.formContent}>
                 <h1 className={styles.title}>Student Form</h1>
                 <form onSubmit={handleSubmit}>

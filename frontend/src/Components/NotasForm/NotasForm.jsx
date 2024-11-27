@@ -4,8 +4,12 @@ import useNotaStore from "../../Store/NotaStore";
 import useStudentStore from "../../Store/StudentStore";
 import useCursoStore from "../../Store/CursoStore";
 import useCicloStore from "../../Store/CicloStore";
+import { useNavigate } from "react-router-dom";
+
 
 const NotasForm = () => {
+    const navigate = useNavigate();
+
     const { addNota, fetchNotas } = useNotaStore();
     const { fetchCursos } = useCursoStore();
     const { fetchStudents } = useStudentStore();
@@ -144,7 +148,9 @@ const NotasForm = () => {
 
     return (
         <div className={styles.formContainer}>
-            <a href="/home">IR a HOME</a>
+            <button className={styles.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
             <div className={styles.formContent}>
                 <h1 className={styles.title}>Notas Form</h1>
                 <form onSubmit={handleSubmit}>

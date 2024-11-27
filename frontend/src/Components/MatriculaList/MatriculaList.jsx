@@ -3,8 +3,12 @@ import useMatriculaStore from "../../Store/MatriculaStore";
 import useCarreraStore from "../../Store/CarreraStore";
 import useStudentStore from "../../Store/StudentStore";
 import style from "./MatriculaList.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 const MatriculasList = () => {
+    const navigate = useNavigate();
+
     const { fetchMatriculas, matriculas, deleteMatricula, updateMatricula } = useMatriculaStore();
     const { fetchCarreras } = useCarreraStore();
     const { fetchStudents } = useStudentStore();
@@ -86,7 +90,9 @@ const MatriculasList = () => {
 
     return (
         <div className={style.contenedorGeneral}>
-            <a href="/home">Ir a Home</a>
+            <button className={style.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
             <h1>Lista de Matrículas</h1>
 
             <div className={style.filterContainer}>
