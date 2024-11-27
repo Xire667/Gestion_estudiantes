@@ -12,9 +12,9 @@ const MatriculaRouter = Router();
 
 // Crear un nuevo Matricula (post = agregar información)
 MatriculaRouter.post('/', async (req, res) => {
-    const { estado, description, id_student, id_carrera } = req.body;
+    const { estado, description, id_student, id_carrera, id_ciclo } = req.body;
     try {
-        const newMatricula = await CreateMatriculaController({ estado, description, id_student, id_carrera });
+        const newMatricula = await CreateMatriculaController({ estado, description, id_student, id_carrera, id_ciclo });
         res.status(201).json(newMatricula);
     } catch (error) {
         res.status(400).json({ error: error.message });

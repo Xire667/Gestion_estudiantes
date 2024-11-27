@@ -4,12 +4,14 @@ import useStudentStore from "../../Store/StudentStore";
 import useCarreraStore from "../../Store/CarreraStore";
 import useUserStore from "../../Store/UserStore";
 import useRoleStore from "../../Store/RolesStore"; // Asegúrate de tener un store para los roles
+import useCicloStore from "../../Store/CicloStore";
 
 const StudentForm = () => {
     const { addStudent } = useStudentStore();
     const { fetchCarreras } = useCarreraStore();
     const { addUser } = useUserStore();
     const { fetchRoles } = useRoleStore(); // Cargar roles desde el store
+    const { fetchCiclos } = useCicloStore(); // Cargar roles desde el store
     const [studentData, setStudentData] = useState({
         dni: "",
         firstName: "",
@@ -21,10 +23,12 @@ const StudentForm = () => {
         id_rol: "",     // Para asociar el rol
         userName: "",   // Campo para el usuario
         password: "",   // Campo para la contraseña
+        id_ciclo:""
     });
 
     const [carreras, setCarreras] = useState([]); // Estado para almacenar las carreras disponibles
     const [roles, setRoles] = useState([]); // Estado para almacenar los roles disponibles
+    const [ciclos, setCiclos] = useState([]); // Estado para almacenar los roles disponibles
 
     useEffect(() => {
         // Llamamos a fetchCarreras y seteamos las carreras
@@ -42,7 +46,14 @@ const StudentForm = () => {
             setRoles(storedRoles);
         };
         getRoles();
-    }, [fetchCarreras, fetchRoles]);
+
+        const getCiclos = async () => {
+            await fetchCiclos();
+            const storedCiclos = useCicloStore.getState().ciclos; // Obtenemos los roles del estado de la store
+            setCiclos(storedCiclos);
+        };
+        getCiclos();
+    }, [fetchCarreras, fetchRoles, fetchCiclos]); // Se ejecuta cada vez que cambian los datos de la store
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -90,6 +101,7 @@ const StudentForm = () => {
                 id_rol: "",     // Resetear id_rol
                 userName: "",   // Resetear usuario
                 password: "",   // Resetear contraseña
+                id_ciclo: ""
             });
 
             alert("Student and user added successfully!");
@@ -167,6 +179,22 @@ const StudentForm = () => {
                         {carreras.map((carrera) => (
                             <option key={carrera.id_carrera} value={carrera.id_carrera}>
                                 {carrera.Name}
+                            </option>
+                        ))}
+                    </select>
+
+                    <label className={styles.label}>Ciclos:</label>
+                    <select
+                        className={styles.input}
+                        name="id_ciclo"
+                        value={studentData.id_ciclo}
+                        onChange={handleInputChange}
+                        required
+                    >
+                        <option value="">Select a cicle</option>
+                        {ciclos.map((ciclo) => (
+                            <option key={ciclo.id_ciclo} value={ciclo.id_ciclo}>
+                                {ciclo.ciclo}
                             </option>
                         ))}
                     </select>

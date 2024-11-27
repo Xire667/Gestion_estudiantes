@@ -3,6 +3,7 @@ const sequelize = require('../db');
 const Users = require('./Users');
 const Roles = require('./Roles');
 const Carrera = require('./Carrera');
+const Ciclos = require('./Ciclos')
 
 const Student = sequelize.define('Student', {
     id_student: {
@@ -53,6 +54,14 @@ const Student = sequelize.define('Student', {
             model: Carrera, // Nombre del modelo con el que se hace la referencia
             key: 'id_carrera' // Llave primaria del modelo Carrera
         }
+    },
+    id_ciclo: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Ciclos, // Nombre del modelo con el que se hace la referencia
+            key: 'id_ciclo' // Llave primaria del modelo Ciclo
+        }
     }
 });
 
@@ -70,5 +79,10 @@ Student.belongsTo(Roles, { foreignKey: 'id_rol' });
 Carrera.hasMany(Student, { foreignKey: 'id_carrera' });
 // Relación: Un estudiante pertenece a una carrera
 Student.belongsTo(Carrera, { foreignKey: 'id_carrera' });
+
+// Relación: Una ciclo puede tener muchos estudiantes
+Ciclos.hasMany(Student, { foreignKey: 'id_ciclo' });
+// Relación: Un estudiante pertenece a un ciclo
+Student.belongsTo(Ciclos, { foreignKey: 'id_ciclo' });
 
 module.exports = Student;

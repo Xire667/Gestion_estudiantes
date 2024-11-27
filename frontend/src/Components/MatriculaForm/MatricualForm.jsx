@@ -3,21 +3,25 @@ import styles from "./MatriculaForm.module.css";
 import useMatriculaStore from "../../Store/MatriculaStore";
 import useCarreraStore from "../../Store/CarreraStore";
 import useStudentStore from "../../Store/StudentStore";
+import useCicloStore from "../../Store/CicloStore"
 
 const MatriculaForm = () => {
     const { addMatricula } = useMatriculaStore();
     const { fetchCarreras } = useCarreraStore();
     const { fetchStudents } = useStudentStore();
+    const { fetchCiclos } = useCicloStore()
 
     const [matriculaData, setMatriculaData] = useState({
         estado: "",
         description: "",
         id_student: "",
         id_carrera: "",
+        id_ciclo: "",
     });
 
     const [carreras, setCarreras] = useState([]); // Estado para almacenar las carreras disponibles
     const [students, setStudents] = useState([]); // Estado para almacenar los estudiantes disponibles
+    const [ciclos, setCiclos] = useState([]); // Estado para almacenar los estudiantes disponibles
 
     useEffect(() => {
         // Llamamos a fetchCarreras y seteamos las carreras
@@ -35,7 +39,14 @@ const MatriculaForm = () => {
             setStudents(storedStudents);
         };
         getStudents();
-    }, [fetchCarreras, fetchStudents]);
+
+        const getCiclos = async () => {
+            await fetchCiclos();
+            const storedCiclos = useCicloStore.getState().ciclos;
+            setCiclos(storedCiclos);
+        };
+        getCiclos();
+    }, [fetchCarreras, fetchStudents, fetchCiclos]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -55,6 +66,7 @@ const MatriculaForm = () => {
                 description: matriculaData.description,
                 id_student: matriculaData.id_student,
                 id_carrera: matriculaData.id_carrera,
+                id_ciclo: matriculaData.id_ciclo,
             };
     
             const createdMatricula = await addMatricula(newMatricula);
@@ -70,6 +82,7 @@ const MatriculaForm = () => {
                 description: "",
                 id_student: "",
                 id_carrera: "",
+                id_ciclo: "",
             });
     
             alert("Matrícula creada con éxito!");
@@ -135,6 +148,21 @@ const MatriculaForm = () => {
                         {carreras.map((carrera) => (
                             <option key={carrera.id_carrera} value={carrera.id_carrera}>
                                 {carrera.Name}
+                            </option>
+                        ))}
+                    </select>
+
+                    <select
+                        className={styles.input}
+                        name="id_ciclo"
+                        value={matriculaData.id_ciclo}
+                        onChange={handleInputChange}
+                        required
+                    >
+                        <option value="">Seleccione una ciclo</option>
+                        {ciclos.map((ciclo) => (
+                            <option key={ciclo.id_ciclo} value={ciclo.id_ciclo}>
+                                {ciclo.ciclo}
                             </option>
                         ))}
                     </select>

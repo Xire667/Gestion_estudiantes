@@ -2,7 +2,7 @@
 
 const Student = require('../Models/Student')
 
-const CreateStudentController = async ({dni, firstName, lastName, email, phone, id_user, id_rol, id_carrera}) => {
+const CreateStudentController = async ({dni, firstName, lastName, email, phone, id_user, id_rol, id_carrera, id_ciclo}) => {
     try {
         // Crear el nuevo estudiante con todos los campos necesarios
         const newStudent = await Student.create({
@@ -13,7 +13,8 @@ const CreateStudentController = async ({dni, firstName, lastName, email, phone, 
             phone,
             id_user,  // ID del usuario relacionado
             id_rol,   // ID del rol relacionado
-            id_carrera // ID de la carrera relacionada
+            id_carrera, // ID de la carrera relacionada
+            id_ciclo
         });
         return newStudent;
     } catch (error) {

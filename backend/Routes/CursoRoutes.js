@@ -10,9 +10,9 @@ const CursoRouter = Router();
 
 // Crear un nuevo Curso (post = agregar información)
 CursoRouter.post('/', async (req, res) => {
-    const { id_curso, Name, description, credits, id_carrera } = req.body;
+    const { id_curso, Name, description, credits, id_carrera, id_ciclo } = req.body;
     try {
-        const newCurso = await CreateCursoController({ id_curso, Name, description, credits, id_carrera });
+        const newCurso = await CreateCursoController({ id_curso, Name, description, credits, id_carrera, id_ciclo});
         res.status(201).json(newCurso);
     } catch (error) {
         res.status(400).json({ error: error.message });

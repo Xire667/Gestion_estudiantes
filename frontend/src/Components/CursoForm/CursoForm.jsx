@@ -2,20 +2,26 @@ import { useState, useEffect } from "react";
 import styles from "./CursoForm.module.css";
 import useCursoStore from "../../Store/CursoStore";
 import useCarreraStore from "../../Store/CarreraStore"; // Asegúrate de tener este store para obtener las carreras
+import useCicloStore from "../../Store/CicloStore";
 
 const CursoForm = () => {
     const { addCursos } = useCursoStore();
     const { fetchCarreras, carreras } = useCarreraStore();
-
+    const { fetchCiclos, ciclos } = useCicloStore();
+    
     const [CursoData, setCursoData] = useState({
         Name: "",
         description: "",
         credits: "",
-        id_carrera: "" // Añadimos el campo para el ID de la carrera
+        id_carrera: "", // Añadimos el campo para el ID de la carrera
+        id_ciclo: ""
     });
 
     useEffect(() => {
         fetchCarreras();
+    }, []);
+    useEffect(() => {
+        fetchCiclos();
     }, []);
 
     const handleInputChange = (e) => {
@@ -33,7 +39,8 @@ const CursoForm = () => {
             Name: "",
             description: "",
             credits: "",
-            id_carrera: "" // Reseteamos el campo
+            id_carrera: "", // Reseteamos el campo
+            id_ciclo: ""
         });
         alert("Curso added Successfully!");
     };
@@ -88,6 +95,20 @@ const CursoForm = () => {
                         {carreras.map((carrera) => (
                             <option key={carrera.id_carrera} value={carrera.id_carrera}>
                                 {carrera.Name}
+                            </option>
+                        ))}
+                    </select>
+                    <select
+                        className={styles.select}
+                        required
+                        name="id_ciclo"
+                        value={CursoData.id_ciclo}
+                        onChange={handleInputChange}
+                    >
+                        <option value="" disabled>Select a Cicle</option>
+                        {ciclos.map((ciclo) => (
+                            <option key={ciclo.id_ciclo} value={ciclo.id_ciclo}>
+                                {ciclo.ciclo}
                             </option>
                         ))}
                     </select>

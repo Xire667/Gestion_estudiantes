@@ -2,13 +2,14 @@
 
 const Matricula = require('../Models/Matricula')
 
-const CreateMatriculaController = async ({estado, description, id_student, id_carrera}) => {
+const CreateMatriculaController = async ({estado, description, id_student, id_carrera, id_ciclo}) => {
     try {
         const newMatricula = await Matricula.create({
             estado,
             description,
             id_student,
-            id_carrera
+            id_carrera,
+            id_ciclo
         });
         console.log('Matrícula creada:', newMatricula); // Depurar
         return newMatricula;

@@ -10,6 +10,7 @@ const Curso = require('../Models/Curso')
 const Roles  = require('../Models/Roles')
 const User = require('../Models/Users')
 const Notas = require('../Models/Notas')
+const Ciclos = require('../Models/Ciclos')
 const sequelize = require('../db')
 
 // Exportar modulos
@@ -23,7 +24,8 @@ const db = {
     Roles,
     User,
     Matricula,
-    Notas
+    Notas,
+    Ciclos
 }
 
 module.exports = db

@@ -8,6 +8,7 @@ const {StudentRouter} = require('../Routes/StudentRoutes')
 const {MatriculaRouter} = require('../Routes/MatriculaRoutes')
 const {NotaRouter} = require('../Routes/NotasRoutes')
 const {TeacherRouter} = require('../Routes/TeacherRoutes')
+const {CicloRouter} = require('../Routes/CicloRouter')
 
 const router = Router()
 
@@ -19,5 +20,6 @@ router.use('/user', UserRouter)
 router.use('/matricula', MatriculaRouter)
 router.use('/notas', NotaRouter)
 router.use('/teacher', TeacherRouter)
+router.use('/ciclos', CicloRouter)
 
 module.exports = router

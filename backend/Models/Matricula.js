@@ -4,6 +4,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require('../db');
 const Student = require('./Student'); // Importar el modelo Estudiante
 const Carrera = require('./Carrera'); // Importar el modelo Carrera
+const Ciclos = require('./Ciclos')
 
 const Matricula = sequelize.define('Matricula', {
     id_matricula: {
@@ -32,6 +33,13 @@ const Matricula = sequelize.define('Matricula', {
             model: Carrera, // Hace referencia al modelo Carrera
             key: 'id_carrera' // Llave primaria en Carrera
         }
+    },
+    id_ciclo: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Ciclos, // Hace referencia al modelo Ciclos
+            key: 'id_ciclo' // Llave primaria en Ciclos
+        }
     }
 });
 
@@ -42,5 +50,9 @@ Matricula.belongsTo(Student, { foreignKey: 'id_student' }); // Una matrícula pe
 // Relación entre Matricula y Carrera
 Carrera.hasMany(Matricula, { foreignKey: 'id_carrera' }); // Una carrera tiene muchas matrículas
 Matricula.belongsTo(Carrera, { foreignKey: 'id_carrera' }); // Una matrícula pertenece a una carrera
+
+// Relación entre Matricula y Ciclo
+Ciclos.hasMany(Matricula, { foreignKey: 'id_ciclo' }); // Una carrera tiene muchas matrículas
+Matricula.belongsTo(Ciclos, { foreignKey: 'id_ciclo' }); // Una matrícula pertenece a una carrera
 
 module.exports = Matricula;

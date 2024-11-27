@@ -11,9 +11,9 @@ const StudentRouter = Router()
 
 //Crear una nueva Student (post = agregar informacion)
 StudentRouter.post('/', async (req, res) => {
-    const { dni, firstName, lastName, email, phone, id_user, id_rol, id_carrera } = req.body; // Incluir los campos requeridos
+    const { dni, firstName, lastName, email, phone, id_user, id_rol, id_carrera, id_ciclo} = req.body; // Incluir los campos requeridos
     try {
-        const newStudent = await CreateStudentController({ dni, firstName, lastName, email, phone, id_user, id_rol, id_carrera });
+        const newStudent = await CreateStudentController({ dni, firstName, lastName, email, phone, id_user, id_rol, id_carrera, id_ciclo });
         res.status(201).json(newStudent);
     } catch (error) {
         res.status(400).json({ error: error.message });
