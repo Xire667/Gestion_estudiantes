@@ -148,10 +148,10 @@ const NotasForm = () => {
 
     return (
         <div className={styles.formContainer}>
+            <div className={styles.formContent}>
             <button className={styles.backButton} onClick={() => navigate(-1)}>
                         Volver
                     </button>
-            <div className={styles.formContent}>
                 <h1 className={styles.title}>Notas Form</h1>
                 <form onSubmit={handleSubmit}>
                     {/* Cycle Selection */}

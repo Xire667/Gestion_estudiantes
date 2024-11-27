@@ -102,10 +102,10 @@ const TeacherForm = () => {
 
     return (
         <div className={style.formContainer}>
+            <div className={style.formContent}>
             <button className={style.backButton} onClick={() => navigate(-1)}>
                         Volver
                     </button>
-            <div className={style.formContent}>
                 <h1 className={style.title}>Teacher Form</h1>
                 <form onSubmit={handleSubmit}>
                     <label className={style.label}>DNI:</label>

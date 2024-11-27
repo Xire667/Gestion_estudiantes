@@ -94,10 +94,10 @@ const MatriculaForm = () => {
 
     return (
         <div className={styles.formContainer}>
+            <div className={styles.formContent}>
             <button className={styles.backButton} onClick={() => navigate(-1)}>
                         Volver
                     </button>
-            <div className={styles.formContent}>
                 <h1 className={styles.title}>Formulario de Matrícula</h1>
                 <form onSubmit={handleSubmit}>
                     <label className={styles.label}>Estado:</label>

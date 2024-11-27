@@ -116,10 +116,11 @@ const StudentForm = () => {
     };
 
     return (
-        <div className={styles.formContainer}><button className={styles.backButton} onClick={() => navigate(-1)}>
-        Volver
-    </button>
+        <div className={styles.formContainer}>
             <div className={styles.formContent}>
+            <button className={styles.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
                 <h1 className={styles.title}>Student Form</h1>
                 <form onSubmit={handleSubmit}>
                     <label className={styles.label}>DNI:</label>
@@ -243,6 +244,7 @@ const StudentForm = () => {
                     <button className={styles.button} type="submit">
                         Save
                     </button>
+                    
                 </form>
             </div>
         </div>
