@@ -6,13 +6,14 @@ const useMatriculaStore = create((set) => ({
     addMatricula: async (matricula) => {
         try {
             const response = await axios.post('http://localhost:3001/matricula', matricula);
-            console.log('Matrícula creada:', response.data); // Verifica que la matrícula se haya creado correctamente
+            console.log('Matrícula creada:', response.data);
             set((state) => ({
                 matriculas: [...state.matriculas, response.data],
             }));
+            return response.data;  // Devuelve los datos de la respuesta
         } catch (error) {
-            console.error('Error adding matricula', error.message);  // Aquí es donde se captura el error
-            alert('Error al crear matrícula: ' + error.message); // Puedes agregar una alerta o manejar el error
+            console.error('Error adding matricula', error.message);
+            throw new Error('Error al crear matrícula: ' + error.message);  // Lanza el error para que sea capturado en el formulario
         }
     },
     fetchMatriculas: async () => {

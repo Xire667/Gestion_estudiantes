@@ -20,10 +20,10 @@ const StudentForm = () => {
         phone: "",
         id_carrera: "", // Para asociar la carrera
         id_user: "",    // Para asociar el id del usuario al estudiante
-        id_rol: "",     // Para asociar el rol
+        id_rol: "2",    // Establecer el rol de estudiante por defecto
         userName: "",   // Campo para el usuario
         password: "",   // Campo para la contraseña
-        id_ciclo:""
+        id_ciclo: ""
     });
 
     const [carreras, setCarreras] = useState([]); // Estado para almacenar las carreras disponibles
@@ -31,27 +31,28 @@ const StudentForm = () => {
     const [ciclos, setCiclos] = useState([]); // Estado para almacenar los roles disponibles
 
     useEffect(() => {
-        // Llamamos a fetchCarreras y seteamos las carreras
         const getCarreras = async () => {
             await fetchCarreras();
-            const storedCarreras = useCarreraStore.getState().carreras; // Obtenemos las carreras del estado de la store
+            const storedCarreras = useCarreraStore.getState().carreras;
+            console.log('Fetched Carreras:', storedCarreras); // Agrega este log
             setCarreras(storedCarreras);
         };
         getCarreras();
-
-        // Llamamos a fetchRoles y seteamos los roles
+    
         const getRoles = async () => {
             await fetchRoles();
-            const storedRoles = useRoleStore.getState().roles; // Obtenemos los roles del estado de la store
+            const storedRoles = useRoleStore.getState().roles;
+            console.log('Fetched Roles:', storedRoles); // Agrega este log
             setRoles(storedRoles);
         };
         getRoles();
-
+    
         const getCiclos = async () => {
             await fetchCiclos();
-            const storedCiclos = useCicloStore.getState().ciclos; // Obtenemos los roles del estado de la store
+            const storedCiclos = useCicloStore.getState().ciclos;
+            console.log('Fetched Ciclos:', storedCiclos); // Agrega este log
             setCiclos(storedCiclos);
-        };
+        }; 
         getCiclos();
     }, [fetchCarreras, fetchRoles, fetchCiclos]); // Se ejecuta cada vez que cambian los datos de la store
 
@@ -98,7 +99,7 @@ const StudentForm = () => {
                 phone: "",
                 id_carrera: "", // Resetear id_carrera
                 id_user: "",    // Resetear id_user
-                id_rol: "",     // Resetear id_rol
+                id_rol: "2",    // Resetear id_rol y establecer de nuevo el valor por defecto
                 userName: "",   // Resetear usuario
                 password: "",   // Resetear contraseña
                 id_ciclo: ""

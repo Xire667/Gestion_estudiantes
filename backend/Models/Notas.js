@@ -36,7 +36,7 @@ const Notas = sequelize.define('Notas', {
         allowNull: false
     },
     promedio: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(5, 2),  // Allows up to 5 digits total, 2 after decimal point
         allowNull: false
     }
 });

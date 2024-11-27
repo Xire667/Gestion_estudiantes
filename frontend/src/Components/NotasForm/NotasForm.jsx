@@ -3,11 +3,23 @@ import styles from "./NotasForm.module.css";
 import useNotaStore from "../../Store/NotaStore";
 import useStudentStore from "../../Store/StudentStore";
 import useCursoStore from "../../Store/CursoStore";
+import useCicloStore from "../../Store/CicloStore";
 
 const NotasForm = () => {
     const { addNota, fetchNotas } = useNotaStore();
     const { fetchCursos } = useCursoStore();
     const { fetchStudents } = useStudentStore();
+    const { fetchCiclos } = useCicloStore();
+
+    const [originalCiclos, setOriginalCiclos] = useState([]);
+    const [originalStudents, setOriginalStudents] = useState([]);
+    const [originalCursos, setOriginalCursos] = useState([]);
+
+    const [ciclos, setCiclos] = useState([]);
+    const [students, setStudents] = useState([]);
+    const [cursos, setCursos] = useState([]);
+    const [selectedCiclo, setSelectedCiclo] = useState("");
+
     const [notaData, setNotaData] = useState({
         id_student: "",
         id_curso: "",
@@ -17,26 +29,56 @@ const NotasForm = () => {
         promedio: ""
     });
 
-    const [cursos, setCursos] = useState([]);
-    const [students, setStudents] = useState([]);
     const [promedioActual, setPromedioActual] = useState(""); 
 
+    // Initial data fetching
     useEffect(() => {
-        const getCursos = async () => {
-            await fetchCursos();
-            const storedCursos = useCursoStore.getState().cursos;
-            setCursos(storedCursos);
-        };
-        getCursos();
+        const loadInitialData = async () => {
+            try {
+                await fetchCiclos();
+                await fetchCursos();
+                await fetchStudents();
 
-        const getStudents = async () => {
-            await fetchStudents();
-            const storedStudents = useStudentStore.getState().students;
-            setStudents(storedStudents);
-        };
-        getStudents();
-    }, [fetchCursos, fetchStudents]);
+                const storedCiclos = useCicloStore.getState().ciclos;
+                const storedCursos = useCursoStore.getState().cursos;
+                const storedStudents = useStudentStore.getState().students;
 
+                setOriginalCiclos(storedCiclos);
+                setOriginalCursos(storedCursos);
+                setOriginalStudents(storedStudents);
+
+                setCiclos(storedCiclos);
+                setCursos(storedCursos);
+                setStudents(storedStudents);
+            } catch (error) {
+                console.error("Error loading initial data:", error);
+            }
+        };
+
+        loadInitialData();
+    }, []);
+
+    useEffect(() => {
+        console.log("Selected ciclo:", selectedCiclo);  // Depuración
+        console.log("Original students:", originalStudents);  // Depuración
+    
+        if (selectedCiclo) {
+            const filteredStudents = originalStudents.filter(
+                student => student.id_ciclo === Number(selectedCiclo)
+            );
+            const filteredCursos = originalCursos.filter(
+                curso => curso.id_ciclo === Number(selectedCiclo)
+            );           
+            console.log("Filtered students:", filteredStudents);  // Depuración
+            setStudents(filteredStudents);
+            setCursos(filteredCursos);
+        } else {
+            setStudents(originalStudents);
+            setCursos(originalCursos);
+        }
+    }, [selectedCiclo, originalStudents, originalCursos]);
+
+    // Average calculation effect
     useEffect(() => {
         const { nota_1, nota_2, nota_3 } = notaData;
         if (nota_1 && nota_2 && nota_3) {
@@ -63,7 +105,6 @@ const NotasForm = () => {
         e.preventDefault();
     
         try {
-            // Asegúrate de que los datos están formateados correctamente
             const notaDataFormatted = {
                 ...notaData,
                 nota_1: parseFloat(notaData.nota_1),
@@ -72,11 +113,18 @@ const NotasForm = () => {
                 promedio: parseFloat(promedioActual)
             };
     
-            console.log("Sending data to backend:", notaDataFormatted);  // Agregar log
+            console.log("Formatted data:", notaDataFormatted);
     
+            try {
+                const response = await addNota(notaDataFormatted);
+                console.log("Backend response:", response);
+            } catch (backendError) {
+                console.error("Backend error details:", backendError.response?.data);
+                alert(`Backend error: ${backendError.response?.data?.message || 'Unknown error'}`);
+            }
             await addNota(notaDataFormatted);
             
-            // Resetear el formulario después de enviar los datos
+            // Reset the form
             setNotaData({
                 id_student: "",
                 id_curso: "",
@@ -89,7 +137,7 @@ const NotasForm = () => {
     
             alert("Nota added successfully!");
         } catch (error) {
-            console.error("Error adding nota:", error.message);
+            console.error("Frontend error:", error);
             alert("There was an error adding the nota.");
         }
     };
@@ -100,6 +148,24 @@ const NotasForm = () => {
             <div className={styles.formContent}>
                 <h1 className={styles.title}>Notas Form</h1>
                 <form onSubmit={handleSubmit}>
+                    {/* Cycle Selection */}
+                    <label className={styles.label}>Ciclo:</label>
+                    <select
+                        className={styles.input}
+                        name="id_ciclo"
+                        value={selectedCiclo}
+                        onChange={(e) => setSelectedCiclo(e.target.value)}
+                        required
+                    >
+                        <option value="">Select a ciclo</option>
+                        {originalCiclos.map((ciclo) => (
+                            <option key={ciclo.id_ciclo} value={ciclo.id_ciclo}>
+                                {ciclo.ciclo}
+                            </option>
+                        ))}
+                    </select>
+
+                    {/* Student Selection */}
                     <label className={styles.label}>Student:</label>
                     <select
                         className={styles.input}
@@ -107,8 +173,15 @@ const NotasForm = () => {
                         value={notaData.id_student}
                         onChange={handleInputChange}
                         required
+                        disabled={!selectedCiclo}
                     >
-                        <option value="">Select a student</option>
+                        <option value="">
+                            {!selectedCiclo 
+                                ? "First select a cycle" 
+                                : students.length 
+                                    ? "Select a student" 
+                                    : "No students in this cycle"}
+                        </option>
                         {students.map((student) => (
                             <option key={student.id_student} value={student.id_student}>
                                 {student.firstName} {student.lastName}
@@ -116,6 +189,7 @@ const NotasForm = () => {
                         ))}
                     </select>
 
+                    {/* Course Selection */}
                     <label className={styles.label}>Curso:</label>
                     <select
                         className={styles.input}
@@ -123,8 +197,15 @@ const NotasForm = () => {
                         value={notaData.id_curso}
                         onChange={handleInputChange}
                         required
+                        disabled={!notaData.id_student}
                     >
-                        <option value="">Select a course</option>
+                        <option value="">
+                            {!notaData.id_student 
+                                ? "First select a student" 
+                                : cursos.length 
+                                    ? "Select a course" 
+                                    : "No courses in this cycle"}
+                        </option>
                         {cursos.map((curso) => (
                             <option key={curso.id_curso} value={curso.id_curso}>
                                 {curso.Name}
@@ -174,7 +255,7 @@ const NotasForm = () => {
                         onChange={handleInputChange}
                     />
 
-                    <div className={styles.promedioContainer}>
+<div className={styles.promedioContainer}>
                         <label className={styles.label}>Promedio:</label>
                         <div className={styles.promedio}>
                             {promedioActual ? (
@@ -203,7 +284,7 @@ const NotasForm = () => {
                     </button>
                 </form>
 
-                <h2 className={styles.title}>Notas List</h2>
+                <h2 className={styles.promedioText}>Promedio: {promedioActual}</h2>
             </div>
         </div>
     );

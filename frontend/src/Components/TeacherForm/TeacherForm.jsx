@@ -17,7 +17,7 @@ const TeacherForm = () => {
         email: "",
         phone: "",
         id_carrera: "", // Carrera seleccionada
-        id_rol: "",     // Rol seleccionado
+        id_rol: "3",    // ID de "profesor" por defecto
         id_user: "",    // ID del usuario creado
         userName: "",   // Usuario
         password: "",   // Contraseña
@@ -83,7 +83,7 @@ const TeacherForm = () => {
                 email: "",
                 phone: "",
                 id_carrera: "",
-                id_rol: "",
+                id_rol: "3",  // Mantener el valor "profesor" por defecto
                 id_user: "",
                 userName: "",
                 password: "",

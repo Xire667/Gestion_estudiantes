@@ -39,10 +39,10 @@ const LoginForm = () => {
         }
     };
 
-    const handleNavigate = async (e) =>{
-        e.preventDefault();
-        navigate('/register');
-    }
+    // const handleNavigate = async (e) =>{
+    //     e.preventDefault();
+    //     navigate('/register');
+    // }
 
     return (
         <div className={style.contenedorGeneral}>
@@ -74,7 +74,6 @@ const LoginForm = () => {
                     </label>
                     <div className={style.botones}>
                         <button type="submit" className={style.boton}>Iniciar Sesión</button>
-                        <button type="button" className={style.botonSecundario} onClick={handleNavigate} >Registrarse</button>
                     </div>
                 </form>
             </div>

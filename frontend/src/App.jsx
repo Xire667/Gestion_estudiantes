@@ -15,6 +15,9 @@ import StudentList from './Components/StudentList/StudentList'
 import MatriculaForm from './Components/MatriculaForm/MatricualForm'
 import NotasForm from './Components/NotasForm/NotasForm'
 import TeacherForm from './Components/TeacherForm/TeacherForm'
+import TeachersList from './Components/TeacherList/TeacherList'
+import MatriculasList from './Components/MatriculaList/MatriculaList'
+import NotasList from './Components/NotasList/NotasList'
 
 function App() {
   return (
@@ -34,8 +37,11 @@ function App() {
           <Route path="/student" element={<StudentForm />} />
           <Route path="/student_list" element={<StudentList />} />
           <Route path="/matricula" element={<MatriculaForm />} />
+          <Route path="/matricula_list" element={<MatriculasList />} />
           <Route path="/notas" element={<NotasForm />} />
+          <Route path="/notas_list" element={<NotasList/>} />
           <Route path="/teacher" element={<TeacherForm />} />
+          <Route path="/teacher_list" element={<TeachersList />} />
         </Routes>
       </BrowserRouter>
     </>

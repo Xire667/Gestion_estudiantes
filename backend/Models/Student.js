@@ -3,7 +3,7 @@ const sequelize = require('../db');
 const Users = require('./Users');
 const Roles = require('./Roles');
 const Carrera = require('./Carrera');
-const Ciclos = require('./Ciclos')
+const Ciclo = require('./Ciclos');
 
 const Student = sequelize.define('Student', {
     id_student: {
@@ -35,8 +35,8 @@ const Student = sequelize.define('Student', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: Users, // Nombre del modelo con el que se hace la referencia
-            key: 'id_user' // Llave primaria del modelo Users
+            model: Users,
+            key: 'id_user'
         }
     },
     id_rol: {
@@ -51,38 +51,34 @@ const Student = sequelize.define('Student', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: Carrera, // Nombre del modelo con el que se hace la referencia
-            key: 'id_carrera' // Llave primaria del modelo Carrera
+            model: Carrera,
+            key: 'id_carrera'
         }
     },
-    id_ciclo: {
+    id_ciclo:{
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-            model: Ciclos, // Nombre del modelo con el que se hace la referencia
-            key: 'id_ciclo' // Llave primaria del modelo Ciclo
+        references:{
+            model:Ciclo,
+            key:'id_ciclo'
         }
     }
 });
 
 // Relación: Un usuario puede tener muchos estudiantes
 Users.hasMany(Student, { foreignKey: 'id_user' });
-// Relación: Un estudiante pertenece a un solo usuario
 Student.belongsTo(Users, { foreignKey: 'id_user' });
 
 // Relación: Un rol puede tener muchos estudiantes
 Roles.hasMany(Student, { foreignKey: 'id_rol' });
-// Relación: Un estudiante pertenece a un solo rol
 Student.belongsTo(Roles, { foreignKey: 'id_rol' });
 
 // Relación: Una carrera puede tener muchos estudiantes
 Carrera.hasMany(Student, { foreignKey: 'id_carrera' });
-// Relación: Un estudiante pertenece a una carrera
 Student.belongsTo(Carrera, { foreignKey: 'id_carrera' });
 
-// Relación: Una ciclo puede tener muchos estudiantes
-Ciclos.hasMany(Student, { foreignKey: 'id_ciclo' });
-// Relación: Un estudiante pertenece a un ciclo
-Student.belongsTo(Ciclos, { foreignKey: 'id_ciclo' });
+// Relación: Un ciclo puede tener muchos estudiantes
+Ciclo.hasMany(Student, { foreignKey: 'id_ciclo' });
+Student.belongsTo(Ciclo, { foreignKey: 'id_ciclo' });
 
 module.exports = Student;
