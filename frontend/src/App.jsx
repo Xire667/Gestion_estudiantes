@@ -18,13 +18,27 @@ import TeacherForm from './Components/TeacherForm/TeacherForm'
 import TeachersList from './Components/TeacherList/TeacherList'
 import MatriculasList from './Components/MatriculaList/MatriculaList'
 import NotasList from './Components/NotasList/NotasList'
+import MenuPrincipal from './Components/MenuPrincipalForm/MenuPrincipalForm'
+import Menu_Administrador from './Components/Menu_Administrador/Menu_Administrador'
+import Menu_Student from './Components/MenuStudent/MenuStudent'
+import CursosListStu from './Components/CursoListStu/CursoListStu'
+import NotasListStu from './Components/NotasListStu/NotasListStu'
+import TeachersListStu from './Components/TeacherListStu/TeacherListStu'
+import Menu_Teacher from './Components/MenuTeacher/Menu_Teacher'
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginForm />} />
+          <Route path="/" element={<MenuPrincipal />} />
+          <Route path="/menu_admi" element={<Menu_Administrador />} />
+          <Route path="/menu_stu" element={<Menu_Student />} />
+          <Route path="/curso_list_stu" element={<CursosListStu />} />
+          <Route path="/notas_list_stu" element={<NotasListStu />} />
+          <Route path="/teacher_list_stu" element={<TeachersListStu />} />
+          <Route path="/menu_profe" element={<Menu_Teacher />} />
+          <Route path="/login" element={<LoginForm />} />
           <Route path="/home" element={<Home />} />
           <Route path="/carrera" element={<CarreraForm />} />
           <Route path="/carrera_list" element={<CarreraList />} />

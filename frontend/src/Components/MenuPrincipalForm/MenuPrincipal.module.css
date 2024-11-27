@@ -38,12 +38,6 @@
     transform: scale(1.05);
 }
 
-.buttonContainer {
-    display: flex;
-    justify-content: center;
-    gap: 1rem; /* Espacio entre los botones */
-}
-
 .enterButton {
     background-color: #3498db;
     color: white;
@@ -60,4 +54,44 @@
     background-color: #2980b9;
     transform: translateY(-3px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.footer {
+    background-color: #34495e;
+    color: white;
+    padding: 2rem 0;
+}
+
+.footerContent {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.systemInfo, .contactInfo {
+    text-align: left;
+}
+
+.systemInfo h3, .contactInfo h4 {
+    margin-bottom: 1rem;
+    color: #ecf0f1;
+}
+
+.systemInfo p, .contactInfo p {
+    margin: 0.5rem 0;
+    color: #bdc3c7;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .footerContent {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .systemInfo, .contactInfo {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
 }

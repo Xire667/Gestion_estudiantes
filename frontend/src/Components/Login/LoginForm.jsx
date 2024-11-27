@@ -1,7 +1,8 @@
-import style from './LoginForm.module.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import style from './LoginForm.module.css';
+import logo from '../img/suiza.png';
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -10,6 +11,7 @@ const LoginForm = () => {
         password: ''
     });
     const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,58 +24,73 @@ const LoginForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        
+
         try {
-            // Hacer la solicitud de login
             const response = await axios.post('http://localhost:3001/user/login', formData);
-            
-            // Guardar el token o información del usuario en el localStorage si es necesario
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            
-            // Navegar a la página de inicio después del login exitoso
             navigate('/home');
         } catch (error) {
-            // Manejar errores de login
             setError(error.response?.data?.error || 'Error de inicio de sesión');
             console.error('Error de login:', error);
         }
     };
-
-    // const handleNavigate = async (e) =>{
-    //     e.preventDefault();
-    //     navigate('/register');
-    // }
+    
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <div className={style.contenedorGeneral}>
             <div className={style.contenedorLogin}>
-                <h2 className={style.titulo}>Login</h2>
-                {error && <p style={{color: 'red'}}>{error}</p>} {/* Mostrar mensaje de error */}
+                <div className={style.logoContainer}>
+                    <img src={logo} alt="Logo" className={style.logo} />
+                </div>
+                <h2 className={style.titulo}>Iniciar Sesión</h2>
+                
+                {error && <p className={style.errorMessage}>{error}</p>}
+                
                 <form className={style.formulario} onSubmit={handleSubmit}>
-                    <label className={style.etiqueta}>
-                        User:
-                        <input
-                            type="text"
-                            name="userName"
-                            value={formData.userName}
-                            onChange={handleChange}
-                            className={style.input}
-                            required
-                        />
-                    </label>
-                    <label className={style.etiqueta}>
-                        Password:
-                        <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            className={style.input}
-                            required
-                        />
-                    </label>
+                    <div className={style.inputGroup}>
+                        <label className={style.etiqueta}>Usuario</label>
+                        <div className={style.inputWrapper}>
+                            <input
+                                type="text"
+                                name="userName"
+                                value={formData.userName}
+                                onChange={handleChange}
+                                className={style.input}
+                                placeholder="Ingrese su nombre de usuario"
+                                required
+                            />
+                            <i className={`fas fa-user ${style.inputIcon}`}></i>
+                        </div>
+                    </div>
+
+                    <div className={style.inputGroup}>
+                        <label className={style.etiqueta}>Contraseña</label>
+                        <div className={style.inputWrapper}>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                className={style.input}
+                                placeholder="Ingrese su contraseña"
+                                required
+                            />
+                            <i className={`fas fa-lock ${style.inputIcon}`}></i>
+                            <button 
+                                type="button" 
+                                className={style.showPasswordButton}
+                                onClick={togglePasswordVisibility}
+                            >
+                                <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                            </button>
+                        </div>
+                    </div>
+
                     <div className={style.botones}>
-                        <button type="submit" className={style.boton}>Iniciar Sesión</button>
+                        <button type="submit" className={style.botonLogin}>Iniciar Sesión</button>
                     </div>
                 </form>
             </div>

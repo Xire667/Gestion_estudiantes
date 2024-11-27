@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useCarreraStore from "../../Store/CarreraStore";
 import styles from "./CarreraForm.module.css";
 
 const CarreraForm = () => {
+    const navigate = useNavigate();
     const { addCarrera, fetchCarreras, carreras, deleteCarrera, updateCarrera } = useCarreraStore();
     const [CarreraData, setCarreraData] = useState({
         Name: "",
@@ -113,6 +115,9 @@ const CarreraForm = () => {
                             Save
                         </button>
                     </form>
+                    <button className={styles.backButton} onClick={() => navigate(-1)}>
+                        Volver
+                    </button>
                 </div>
             </div>
 
@@ -143,34 +148,37 @@ const CarreraForm = () => {
                         <button className={styles.closeButton} onClick={handleCloseEdit}>❌</button>
                         <h2>Edit Career</h2>
                         <form onSubmit={handleEditSubmit}>
-                            <label>
+                            <label className={styles.label}>
                                 Name:
                                 <input
+                                    className={styles.input}
                                     type="text"
                                     name="Name"
                                     value={selectedCarrera.Name}
                                     onChange={handleEditChange}
                                 />
                             </label>
-                            <label>
+                            <label className={styles.label}>
                                 Description:
                                 <input
+                                    className={styles.input}
                                     type="text"
                                     name="description"
                                     value={selectedCarrera.description}
                                     onChange={handleEditChange}
                                 />
                             </label>
-                            <label>
+                            <label className={styles.label}>
                                 Duration:
                                 <input
+                                    className={styles.input}
                                     type="text"
                                     name="duration"
                                     value={selectedCarrera.duration}
                                     onChange={handleEditChange}
                                 />
                             </label>
-                            <button type="submit">Save</button>
+                            <button className={styles.button} type="submit">Save</button>
                         </form>
                     </div>
                 )}
